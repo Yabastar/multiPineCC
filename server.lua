@@ -31,6 +31,7 @@ local function bootConnection()
         for id, isReceived in pairs(received) do
             if not isReceived then
                 pos[id] = nil
+                break
             end
         end
         for id, _ in pairs(received) do
