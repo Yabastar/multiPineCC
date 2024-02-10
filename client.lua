@@ -127,8 +127,15 @@ local function display()
                     objects[i] = newObject
                 end
             end
+            local allObj = {}
 
-            frame:drawObjects(objects)
+            local count = 1
+            for k,v in pairs(objects) do
+                allObj[count] = v
+                count = count + 1
+            end
+            
+            frame:drawObjects(allObj)
             frame:drawBuffer()
         end
     end
