@@ -81,6 +81,15 @@ if selection == "List servers" then
     local _, _, serverSelection = PrimeUI.run()
     local index = inverted[serverSelection]
     hostname = tonumber(index)
+else
+    PrimeUI.clear()
+    PrimeUI.label(term.current(), 3, 2, "Sample Text")
+    PrimeUI.horizontalLine(term.current(), 3, 3, #("Sample Text") + 2)
+    PrimeUI.label(term.current(), 3, 5, "Enter computer ID")
+    PrimeUI.borderBox(term.current(), 4, 7, 40, 1)
+    PrimeUI.inputBox(term.current(), 4, 7, 40, "result")
+    local _, _, text = PrimeUI.run()
+    hostname = tonumber(text)
 end
 
 local frame = pine.newFrame()
