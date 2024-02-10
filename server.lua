@@ -1,7 +1,10 @@
-local tickSpeed = 10
+--configurable variables
+local tickSpeed = 10 -- updates per second
+local serverName = "server"..tostring(os.getComputerID())
 
-rednet.open("top")
-rednet.host("GS", "server"..tostring(os.getComputerID()))
+
+peripheral.find("modem", rednet.open)
+rednet.host("MultiPine", serverName)
 local idlist = {}
 local pos = {}
 local received = {}
@@ -12,7 +15,9 @@ local function getData()
         if msg == "received" then
             received[id] = true
         else
-            pos[id] = msg
+            if prot == "MultiPine" then
+                pos[id] = msg
+            end
         end
     end
 end
@@ -21,7 +26,7 @@ local function gameTick()
     while true do
         sleep(1/tickSpeed)
         print(textutils.serialise(pos))
-        rednet.broadcast(textutils.serialise(pos),"GS")
+        rednet.broadcast(textutils.serialise(pos),"MultiPineR")
     end
 end
 
